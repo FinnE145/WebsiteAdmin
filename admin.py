@@ -10,7 +10,7 @@ def index():
 
 @app.route("/restart", methods=["GET", "POST"])
 def restart():
-    print(request.form)
+    print(request.get_json())
     return "Nothing happened"
 
 if __name__ == "__main__":
