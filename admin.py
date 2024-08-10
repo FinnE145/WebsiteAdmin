@@ -10,8 +10,15 @@ def index():
 
 @app.route("/restart", methods=["GET", "POST"])
 def restart():
-    print(request.get_json())
-    return "Nothing happened"
+    res = request.get_json()
+    print(res)
+    branch = res["ref"].split("/")[-1]
+    print(f"Committed to {branch}")
+    if branch == "main":
+        print("Main branch updated, restarting")
+        return "Restarting"
+    else:
+        return "Nothing happened"
 
 if __name__ == "__main__":
     app.run()
